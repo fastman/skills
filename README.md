@@ -91,9 +91,9 @@ Publishing checklist is documented in `docs/PUBLISHING.md`.
 
 ## Scope Policy
 
-- This repository is Kaneo-only.
-- Keep a single skill directory: `skills/kaneo`.
-- Scope checks fail CI if additional top-level skills are added.
+- This repository is Kaneo-focused.
+- Allowed skill directories: `skills/kaneo`, `skills/kaneo-brain-dump`.
+- Scope checks fail CI if skills outside the allowed set are added.
 
 ## Maintenance Guidelines
 

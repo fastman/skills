@@ -1,0 +1,23 @@
+{
+  "skill_name": "kaneo-brain-dump",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I already did the analysis work, I just need you to put the brain into Kaneo so we can resume later. Use workspace `mcp-kaneo-test`, project `mcp-kaneo-test-project`, status `to-do`, priority `high`. Create a parent task plus 2-3 subtasks if that makes the handoff more executable. Context: We investigated a token refresh race in a web app. What we learned: the API client retries 401s, but if three requests fail at once they each start their own refresh call. The refresh endpoint invalidates the previous token immediately, so concurrent refreshes can knock each other out and leave the UI logged out. `AuthProvider` assumes refresh is idempotent, but it is not. `useCurrentUser` also treats any refresh error as a hard logout, which makes the failure noisy. Missing piece: there is no shared in-flight refresh promise. Constraints: backend behavior cannot change this sprint, so fix must be client-side. Recommended path: centralize refresh orchestration in the API client, fan out waiting callers to one promise, and only hard-logout after a confirmed refresh failure. Useful refs: `src/lib/apiClient.ts`, `src/auth/AuthProvider.tsx`, `src/hooks/useCurrentUser.ts`. Verify commands: `pnpm test src/lib/apiClient.test.ts`, `pnpm test src/auth/AuthProvider.test.tsx`. Please preserve the reasoning, not code dumps.",
+      "expected_output": "A high-signal parent task that captures the race condition, constraints, recommended fix, references, and a few actionable subtasks without dumping source code.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "Put this in Kaneo for later implementation. Use workspace `mcp-kaneo-test`, project `mcp-kaneo-test-project`, status `to-do`, priority `high`. Create a parent task and subtasks. This is from a Rails test-planning investigation. We learned: `spec/models/event_spec.rb` only covers the happy path for `#is_admin?`. `#is_admin?` has a hardcoded legacy backdoor for specific event/user IDs that must be preserved or deliberately removed with a test. `#get_circle_for` is private but shared by six public methods, so stubbing it is the lowest-friction way to test membership behavior. `#prepare_occurrence` increments dates until weekday and not-happened conditions align, so it is time-sensitive and likely needs frozen time. Missing pieces: there is no `spec/factories/events.rb`, and there may also be no sport factory. Recommended plan: create factory coverage first, then split tests into cohesive groups for display methods, occurrence builders, membership mutations, priority methods, and access control. Useful refs: `app/models/event.rb`, `spec/models/event_spec.rb`, `spec/models/confirm_policy_spec.rb`. Run command: `bundle exec spring rspec spec/models/event_spec.rb`. Save the irreplaceable reasoning, not a line-by-line model summary.",
+      "expected_output": "A parent task that preserves the test strategy and gotchas, with subtasks grouped into executable test work rather than a raw code summary.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Please offload this into Kaneo so I don't lose the investigation, but keep it to a single task unless subtasks are truly necessary. Use workspace `mcp-kaneo-test`, project `mcp-kaneo-test-project`, status `to-do`, priority `medium`. Context: We debugged a CSV importer issue. Root cause: the importer maps columns by header text after trimming whitespace, but two customer exports use duplicate header names (`Email`) for primary and billing contacts. The importer silently keeps the last duplicate, so primary contacts get overwritten. Constraint: we cannot change the export format; we have to make the importer detect duplicates and fail loudly with a useful message. Recommended next step: add duplicate-header validation before row parsing and include the repeated column names in the error. Useful refs: `lib/import/customers_csv.rb`, `spec/lib/import/customers_csv_spec.rb`. Verify: `bundle exec rspec spec/lib/import/customers_csv_spec.rb`. No code dump please, just preserve the important conclusions and next move.",
+      "expected_output": "A concise single-task handoff that captures the importer gotcha, constraint, and next step without inventing unnecessary subtasks.",
+      "files": []
+    }
+  ]
+}

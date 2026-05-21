@@ -5,7 +5,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const skillsDir = path.join(root, 'skills');
-const allowed = new Set(['kaneo']);
+const allowed = new Set(['kaneo', 'kaneo-brain-dump']);
 
 async function main() {
   let entries;
@@ -17,7 +17,7 @@ async function main() {
   }
 
   const directories = entries
-    .filter((entry) => entry.isDirectory())
+    .filter((entry) => entry.isDirectory() && !entry.name.endsWith('-workspace'))
     .map((entry) => entry.name)
     .sort();
 

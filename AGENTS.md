@@ -119,7 +119,7 @@ When using the Kaneo skill in a project:
 
 ## Scope Policy
 
-This repository is Kaneo-only. Only `skills/kaneo/` is allowed. Adding other skill directories will fail CI validation.
+This repository is Kaneo-focused. Allowed skill directories: `skills/kaneo/`, `skills/kaneo-brain-dump/`. Adding other skill directories will fail CI validation.
 
 ## Versioning
 
@@ -138,7 +138,7 @@ npm run validate
 Edit `version` in SKILL.md frontmatter AND `skills/kaneo/SKILL.md` metadata section.
 
 ### Creating a new skill (NOT ALLOWED)
-This repo is Kaneo-only. Do not add other skills.
+This repo allows only `kaneo` and `kaneo-brain-dump`. Do not add other skills.
 
 ## References
 
