@@ -1,12 +1,12 @@
 {
-  "name": "kaneo-skills",
+  "name": "skills",
   "owner": {
     "name": "fastman",
     "email": "fastman@users.noreply.github.com"
   },
   "metadata": {
-    "description": "Kaneo skill bundle for task and project management",
-    "version": "1.2.0"
+    "description": "Agent skills collection by fastman",
+    "version": "3.0.0"
   },
   "plugins": [
     {

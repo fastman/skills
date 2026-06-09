@@ -21,3 +21,6 @@ coverage/
 # Local agent state
 docs/PROGRESS.md
 docs/agent-sessions/
+
+# Local Kaneo workspace/project credentials (used for skill dev/eval)
+docs/KANEO.md

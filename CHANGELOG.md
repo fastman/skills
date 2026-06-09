@@ -2,6 +2,16 @@
 
 All notable changes to this skills repository are documented here.
 
+## 3.0.0 - 2026-06-09
+
+- **Breaking change**: Renamed repository from `fastman/kaneo-skills` to `fastman/skills`
+- **Breaking change**: Opened scope policy — any skill directory under `skills/` is now allowed
+- **Breaking change**: Removed `docs/KANEO.md` from git tracking (local-only development file)
+- Rewrote `scripts/validate-scope.mjs` to only verify `skills/` directory exists
+- Added `scripts/validate-skills.mjs` to auto-discover and validate all skills
+- Updated `validate:skills` npm script to use new auto-discovery script
+- Updated all documentation to reflect new repo name, URLs, and scope policy
+
 ## 2.0.0 - 2026-04-13
 
 - **Breaking change**: Rewrote skill to use `mcp-kaneo` MCP server instead of direct curl/REST calls

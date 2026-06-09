@@ -10,7 +10,7 @@ This repository is published through normal GitHub hosting. There is no separate
 ## Preconditions
 
 1. Repository is public on GitHub.
-2. `skills/kaneo/SKILL.md` is valid and uses stable naming.
+2. `skills/<name>/SKILL.md` is valid for each skill.
 3. `.claude-plugin/marketplace.json` is valid and points to existing skill paths.
 4. CI passes (`.github/workflows/validate.yml`).
 
@@ -24,7 +24,7 @@ npm run validate
 
 ## Release process
 
-1. Update `skills/kaneo/SKILL.md` `metadata.version`.
+1. Update `metadata.version` in each skill's `SKILL.md` that changed.
 2. Add entry to `CHANGELOG.md`.
 3. Merge to `main` after CI passes.
 4. Tag release:
@@ -37,7 +37,7 @@ git push origin vX.Y.Z
 5. Announce install command:
 
 ```bash
-npx skills add fastman/kaneo-skills
+npx skills add fastman/skills
 ```
 
 ## Optional hardening (future)
@@ -47,5 +47,5 @@ npx skills add fastman/kaneo-skills
 
 ## Repository scope
 
-- This repository is intentionally Kaneo-only.
-- Keep skill content under `skills/kaneo`.
+- Any skill directory under `skills/` is allowed.
+- Each skill must have a valid `SKILL.md` and follow the frontmatter format.

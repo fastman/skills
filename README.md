@@ -1,49 +1,32 @@
-# Kaneo Skills
+# Skills
 
-This repository contains Kaneo-focused agent skills following the Agent Skills format.
-
-## Environment and Secret Safety
-
-The `kaneo` skill supports local env files for credentials.
-
-Required variables:
-- `KANEO_BASE_URL` (must include `/api`)
-- `KANEO_TOKEN`
-
-Resolution order:
-1. Process environment
-2. Workspace `.env`
-3. Workspace `.env.local` (if present)
-
-Security policy:
-- Never expose token values in assistant responses, logs, command output summaries, or prompts sent to sub-agents/models.
-- Never request users to paste raw tokens in chat.
-- Always redact auth examples as `Authorization: Bearer ***`.
+Agent skills collection by fastman.
 
 ## Repository Structure
 
-- `skills/<skill-name>/SKILL.md` - skill metadata and instructions
-- `skills/<skill-name>/references/` - optional supporting docs
-- `skills/<skill-name>/scripts/` - optional helper scripts
+- `skills/<skill-name>/SKILL.md` — skill metadata and instructions
+- `skills/<skill-name>/references/` — optional supporting docs
+- `skills/<skill-name>/scripts/` — optional helper scripts
 
-## Available Skill
+## Available Skills
 
 | Skill | Description |
 |---|---|
 | `kaneo` | Manage tasks in Kaneo via REST API (tasks, labels, comments, search, project workflows). |
+| `kaneo-brain-dump` | Persist analysis insights and investigation findings into Kaneo tasks. |
 
 ## Usage
 
 Install from this repository with the Skills CLI:
 
 ```bash
-npx skills add fastman/kaneo-skills
+npx skills add fastman/skills
 ```
 
-Install only the Kaneo skill:
+Install a specific skill:
 
 ```bash
-npx skills add fastman/kaneo-skills --skill kaneo
+npx skills add fastman/skills --skill kaneo
 ```
 
 ## Claude Code Plugin Marketplace
@@ -51,8 +34,8 @@ npx skills add fastman/kaneo-skills --skill kaneo
 This repository also includes plugin marketplace metadata at `.claude-plugin/marketplace.json`.
 
 ```bash
-/plugin marketplace add fastman/kaneo-skills
-/plugin install kaneo@<marketplace-name>
+/plugin marketplace add fastman/skills
+/plugin install kaneo@skills
 ```
 
 ## Validation
@@ -72,9 +55,16 @@ npm run validate:skills
 
 CI also runs these checks on every PR and push to `main` via `.github/workflows/validate.yml`.
 
+## Scope Policy
+
+- Any skill directory under `skills/` is allowed.
+- Each skill must have a valid `SKILL.md` in its directory.
+- The scope validator checks that `skills/` exists and is a directory.
+- The skills validator auto-discovers all `skills/*/SKILL.md` files and validates each one.
+
 ## Versioning and Releases
 
-- Keep `metadata.version` in `skills/kaneo/SKILL.md` up to date for behavior changes.
+- Keep `metadata.version` in each skill's `SKILL.md` up to date for behavior changes.
 - Create git tags for published milestones (`vX.Y.Z`).
 - Record public changes in `CHANGELOG.md`.
 
@@ -84,16 +74,10 @@ There is no manual deploy step to skills.sh.
 Skills become discoverable/ranked via anonymous telemetry when users run:
 
 ```bash
-npx skills add fastman/kaneo-skills
+npx skills add fastman/skills
 ```
 
 Publishing checklist is documented in `docs/PUBLISHING.md`.
-
-## Scope Policy
-
-- This repository is Kaneo-focused.
-- Allowed skill directories: `skills/kaneo`, `skills/kaneo-brain-dump`.
-- Scope checks fail CI if skills outside the allowed set are added.
 
 ## Maintenance Guidelines
 

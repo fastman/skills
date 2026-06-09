@@ -5,33 +5,16 @@ import path from 'node:path';
 
 const root = process.cwd();
 const skillsDir = path.join(root, 'skills');
-const allowed = new Set(['kaneo', 'kaneo-brain-dump']);
 
 async function main() {
-  let entries;
   try {
-    entries = await fs.readdir(skillsDir, { withFileTypes: true });
-  } catch {
-    console.error(`Scope validation failed: missing directory ${skillsDir}`);
-    process.exit(1);
-  }
-
-  const directories = entries
-    .filter((entry) => entry.isDirectory() && !entry.name.endsWith('-workspace'))
-    .map((entry) => entry.name)
-    .sort();
-
-  if (!directories.includes('kaneo')) {
-    console.error('Scope validation failed: required directory skills/kaneo is missing.');
-    process.exit(1);
-  }
-
-  const disallowed = directories.filter((name) => !allowed.has(name));
-  if (disallowed.length > 0) {
-    console.error('Scope validation failed: this repository is Kaneo-only.');
-    for (const name of disallowed) {
-      console.error(`- remove unsupported skill directory: skills/${name}`);
+    const stat = await fs.stat(skillsDir);
+    if (!stat.isDirectory()) {
+      console.error(`Scope validation failed: ${skillsDir} is not a directory`);
+      process.exit(1);
     }
+  } catch {
+    console.error(`Scope validation failed: ${skillsDir} does not exist`);
     process.exit(1);
   }
 

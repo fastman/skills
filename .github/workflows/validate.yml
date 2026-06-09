@@ -23,5 +23,5 @@ jobs:
       - name: Validate marketplace manifest
         run: node scripts/validate-marketplace.mjs
 
-      - name: Validate skill spec
-        run: npx skills-ref validate ./skills/kaneo
+      - name: Validate skill specs
+        run: npm run validate:skills
